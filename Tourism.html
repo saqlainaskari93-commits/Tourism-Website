@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExploreWorld | Tourism & Travel</title>
+
+<style>
+:root {
+  --green:#087f6b;
+  --dark:#102a27;
+  --gold:#e6b65c;
+  --light:#f5f8f6;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:#263b36;background:var(--light);line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+header{
+  background:rgba(10,35,31,.96);color:white;
+  position:sticky;top:0;z-index:1000;
+  padding:14px 6%;display:flex;justify-content:space-between;
+  align-items:center;gap:20px
+}
+.logo{font-size:24px;font-weight:bold;color:var(--gold)}
+nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+nav a{font-size:14px;color:white}
+nav a:hover{color:var(--gold)}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.hero{
+ min-height:620px;display:flex;align-items:center;
+ padding:80px 8%;color:white;
+ background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15)),
+ url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800')
+ center/cover
+}
+.hero-content{max-width:650px}
+.hero h1{font-size:55px;line-height:1.15;margin-bottom:20px}
+.hero p{font-size:18px;margin-bottom:25px}
+.btn{
+ display:inline-block;padding:13px 25px;border:0;
+ border-radius:6px;background:var(--green);color:white;
+ font-weight:bold;transition:.3s
+}
+.btn:hover{background:#065c4f;transform:translateY(-2px)}
+.btn.gold{background:var(--gold);color:#172c26}
+section{padding:75px 7%}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:35px;color:var(--dark)}
+.section-title p{color:#687a73;margin-top:8px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{width:100%;height:350px;object-fit:cover;border-radius:12px}
+.about h2{font-size:34px;color:var(--dark);margin-bottom:15px}
+.stats{display:flex;gap:25px;margin-top:25px;flex-wrap:wrap}
+.stat strong{display:block;font-size:27px;color:var(--green)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.card{
+ background:white;border-radius:12px;overflow:hidden;
+ box-shadow:0 5px 20px #0000000d;transition:.3s
+}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:210px;object-fit:cover}
+.card-content{padding:20px}
+.card h3{color:var(--dark);margin-bottom:8px}
+.price{font-size:20px;color:var(--green);font-weight:bold;margin:10px 0}
+.mission{background:#e8f2ed}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mission-box{background:white;padding:25px;border-radius:10px}
+.mission-box h3{color:var(--green);margin-bottom:10px}
+.experience{background:var(--dark);color:white}
+.experience .section-title h2{color:white}
+.experience .card h3{color:var(--dark)}
+.experience .card p{color:#596a64}
+.experience .card{color:#263b36}
+.rating{color:#e5a72e;font-size:19px}
+.reviews .card{padding:25px}
+.reviews .card img{width:65px;height:65px;border-radius:50%;margin-bottom:10px}
+.review-name{font-weight:bold;color:var(--dark);margin-top:12px}
+.booking{background:#eaf2ef}
+.booking-wrap{
+ max-width:900px;margin:auto;background:white;
+ padding:35px;border-radius:12px;box-shadow:0 5px 25px #0001
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field label{display:block;font-weight:bold;margin-bottom:6px}
+.field input,.field select,.field textarea{
+ width:100%;padding:13px;border:1px solid #d4ded9;
+ border-radius:6px;font-size:15px;background:white
+}
+.field textarea{min-height:90px;resize:vertical}
+.full{grid-column:1/-1}
+.form-note{font-size:13px;color:#66766e;margin-top:12px}
+.partners{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.partner{
+ background:white;padding:30px;border-radius:12px;
+ box-shadow:0 4px 18px #0000000d
+}
+.partner a{display:block;color:var(--green);padding:9px 0;border-bottom:1px solid #eee}
+.partner a:hover{text-decoration:underline}
+.contact{background:#102a27;color:white;text-align:center}
+.contact h2{color:var(--gold);font-size:32px;margin-bottom:15px}
+footer{background:#081d1a;color:#b9c9c2;text-align:center;padding:20px}
+footer span{color:var(--gold)}
+@media(max-width:850px){
+ .cards{grid-template-columns:repeat(2,1fr)}
+ .mission-grid{grid-template-columns:1fr}
+ .about{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ header{flex-wrap:wrap}
+ .menu{display:block}
+ nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding:15px 0}
+ nav.show{display:flex}
+ .hero{min-height:520px}
+ .hero h1{font-size:39px}
+ .cards,.partners{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}
+ .full{grid-column:auto}
+ section{padding:55px 6%}
+ .booking-wrap{padding:22px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">ExploreWorld.</div>
+ <button class="menu" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+ <nav id="navigation">
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#destinations" onclick="closeMenu()">Destinations</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#partners" onclick="closeMenu()">Hotels & Restaurants</a>
+  <a href="#booking" class="btn" onclick="closeMenu()">Book a Car</a>
+ </nav>
+</header>
+
+<!-- HOME -->
+<div class="hero" id="home">
+ <div class="hero-content">
+  <h1>Discover The World With Us</h1>
+  <p>Explore beautiful destinations, experience unforgettable journeys
+  and travel comfortably with our professional tourism services.</p>
+  <a href="#destinations" class="btn gold">Explore Destinations</a>
+  <a href="#booking" class="btn">Book Your Car</a>
+ </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+ <div class="about">
+  <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1000" alt="Beautiful lake and mountains">
+  <div>
+   <h2>About Our Tourism Company</h2>
+   <p>Welcome to ExploreWorld, your trusted travel partner.
+   We help travelers discover beautiful places, enjoy comfortable
+   journeys and create unforgettable memories.</p>
+   <p>Our professional team provides travel guidance, transportation
+   and customized tourism experiences for individuals and families.</p>
+   <div class="stats">
+    <div class="stat"><strong>10+</strong>Years Experience</div>
+    <div class="stat"><strong>500+</strong>Happy Travelers</div>
+    <div class="stat"><strong>25+</strong>Destinations</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+ <div class="section-title">
+  <h2>Our Mission & Vision</h2>
+  <p>Our commitment to making every journey special.</p>
+ </div>
+ <div class="mission-grid">
+  <div class="mission-box">
+   <h3>Our Mission</h3>
+   <p>To provide safe, affordable and memorable travel experiences
+   through quality services and customer satisfaction.</p>
+  </div>
+  <div class="mission-box">
+   <h3>Our Vision</h3>
+   <p>To become a trusted tourism company connecting people with
+   beautiful destinations around the world.</p>
+  </div>
+  <div class="mission-box">
+   <h3>Our Values</h3>
+   <p>Honesty, safety, hospitality, professionalism and respect
+   for local communities and nature.</p>
+  </div>
+ </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations">
+ <div class="section-title">
+  <h2>Popular Destinations</h2>
+  <p>Explore some of the world's most beautiful places.</p>
+ </div>
+ <div class="cards">
+
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800" alt="Mountain landscape">
+   <div class="card-content">
+    <h3>Hunza Valley</h3>
+    <p>Discover stunning mountains, peaceful villages and beautiful scenery.</p>
+    <div class="price">From $150 / person</div>
+    <a class="btn" href="#booking">Book a Trip</a>
+   </div>
+  </div>
+
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800" alt="Mountain peaks">
+   <div class="card-content">
+    <h3>Skardu</h3>
+    <p>Explore lakes, mountains, valleys and breathtaking landscapes.</p>
+    <div class="price">From $180 / person</div>
+    <a class="btn" href="#booking">Book a Trip</a>
+   </div>
+  </div>
+
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800" alt="Beautiful natural destination">
+   <div class="card-content">
+    <h3>Fairy Meadows</h3>
+    <p>Experience nature, mountain views and peaceful surroundings.</p>
+    <div class="price">From $200 / person</div>
+    <a class="btn" href="#booking">Book a Trip</a>
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+ <div class="section-title">
+  <h2>Our Travel Experiences</h2>
+  <p>Travel your way with experiences designed for everyone.</p>
+ </div>
+ <div class="cards">
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800" alt="Hiking">
+   <div class="card-content">
+    <h3>Adventure Tours</h3>
+    <p>Enjoy exciting outdoor adventures and mountain exploration.</p>
+   </div>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="Beach holiday">
+   <div class="card-content">
+    <h3>Family Holidays</h3>
+    <p>Spend quality time with family in beautiful destinations.</p>
+   </div>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800" alt="Nature tour">
+   <div class="card-content">
+    <h3>Nature Exploration</h3>
+    <p>Discover natural beauty, lakes, forests and peaceful locations.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+<section class="reviews" id="reviews">
+ <div class="section-title">
+  <h2>Our Happy Clients</h2>
+  <p>What our travelers say about their experiences.</p>
+ </div>
+ <div class="cards">
+  <div class="card">
+   <div class="card-content">
+    <div class="rating">★★★★★</div>
+    <p>"Amazing experience! The team was professional and
+    our journey was comfortable and memorable."</p>
+    <div class="review-name">Ahmed Khan</div>
+    <small>Family Traveler</small>
+   </div>
+  </div>
+  <div class="card">
+   <div class="card-content">
+    <div class="rating">★★★★★</div>
+    <p>"Beautiful destinations, excellent transportation
+    and friendly customer service."</p>
+    <div class="review-name">Sarah Ali</div>
+    <small>Adventure Traveler</small>
+   </div>
+  </div>
+  <div class="card">
+   <div class="card-content">
+    <div class="rating">★★★★★</div>
+    <p>"A wonderful trip. Everything was organized
+    professionally. Highly recommended."</p>
+    <div class="review-name">Usman Ahmed</div>
+    <small>Tourist</small>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- BOOK A CAR -->
+<section class="booking" id="booking">
+ <div class="section-title">
+  <h2>Book Your Car</h2>
+  <p>Complete the form and send your booking request.</p>
+ </div>
+
+ <div class="booking-wrap">
+  <form id="carForm">
+   <div class="form-grid">
+
+    <div class="field">
+     <label for="name">Full Name *</label>
+     <input id="name" name="name" type="text" placeholder="Enter your name" required>
+    </div>
+
+    <div class="field">
+     <label for="email">Email Address *</label>
+     <input id="email" name="email" type="email" placeholder="Enter your email" required>
+    </div>
+
+    <div class="field">
+     <label for="phone">Phone Number *</label>
+     <input id="phone" name="phone" type="tel" placeholder="+92..." required>
+    </div>
+
+    <div class="field">
+     <label for="destination">Destination *</label>
+     <input id="destination" name="destination" type="text" placeholder="Where are you going?" required>
+    </div>
+
+    <div class="field">
+     <label for="pickup">Pickup Date *</label>
+     <input id="pickup" name="pickup" type="date" required>
+    </div>
+
+    <div class="field">
+     <label for="return">Return Date *</label>
+     <input id="return" name="return" type="date" required>
+    </div>
+
+    <div class="field">
+     <label for="days">Number of Days</label>
+     <input id="days" name="days" type="number" min="1" placeholder="Travel days" readonly>
+    </div>
+
+    <div class="field">
+     <label for="car">Select Your Car *</label>
+     <select id="car" name="car" required>
+      <option value="">Choose a car</option>
+      <option>Toyota Corolla</option>
+      <option>Toyota Yaris</option>
+      <option>Toyota Prado</option>
+      <option>Toyota Land Cruiser</option>
+      <option>Coaster / Hiace</option>
+     </select>
+    </div>
+
+    <div class="field">
+     <label for="passengers">Number of Passengers *</label>
+     <input id="passengers" name="passengers" type="number" min="1" max="30" required placeholder="Passengers">
+    </div>
+
+    <div class="field">
+     <label for="time">Pickup Time</label>
+     <input id="time" name="time" type="time">
+    </div>
+
+    <div class="field full">
+     <label for="message">Additional Details</label>
+     <textarea id="message" name="message" placeholder="Write your requirements here..."></textarea>
+    </div>
+
+    <div class="field full">
+     <button class="btn" type="submit" style="width:100%">
+      Book A Car
+     </button>
+     <p class="form-note">
+      Your information will be prepared in an email request.
+      Your booking is not confirmed until the company contacts you.
+     </p>
+    </div>
+
+   </div>
+  </form>
+ </div>
+</section>
+
+<!-- HOTEL AND RESTAURANT LINKS -->
+<section id="partners">
+ <div class="section-title">
+  <h2>Hotels & Restaurants</h2>
+  <p>Find accommodation and dining options for your journey.</p>
+ </div>
+
+ <div class="partners">
+  <div class="partner">
+   <h2>Find Hotels</h2>
+   <p>Explore hotel options and accommodation.</p>
+   <a href="https://www.booking.com/" target="_blank" rel="noopener">Booking.com ↗</a>
+   <a href="https://www.agoda.com/" target="_blank" rel="noopener">Agoda ↗</a>
+   <a href="https://www.hotels.com/" target="_blank" rel="noopener">Hotels.com ↗</a>
+   <a href="https://www.trivago.com/" target="_blank" rel="noopener">Trivago ↗</a>
+  </div>
+
+  <div class="partner">
+   <h2>Find Restaurants</h2>
+   <p>Discover restaurants, food and dining places.</p>
+   <a href="https://www.tripadvisor.com/Restaurants" target="_blank" rel="noopener">Tripadvisor Restaurants ↗</a>
+   <a href="https://www.google.com/maps" target="_blank" rel="noopener">Google Maps Restaurants ↗</a>
+   <a href="https://www.zomato.com/" target="_blank" rel="noopener">Zomato ↗</a>
+   <a href="https://www.opentable.com/" target="_blank" rel="noopener">OpenTable ↗</a>
+  </div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+ <h2>Start Your Journey Today!</h2>
+ <p>Have questions? Contact our tourism team.</p>
+ <p>Email: info@exploreworld.com</p>
+ <p>Phone: +92 XXX XXXXXXX</p>
+ <p>Address: Your Company Address</p>
+ <br>
+ <a href="#booking" class="btn gold">Book Your Journey</a>
+</section>
+
+<footer>
+ <p>© <span id="year"></span> <span>ExploreWorld Tourism</span>.
+ All Rights Reserved.</p>
+</footer>
+
+<script>
+// Mobile navigation
+function toggleMenu(){
+ document.getElementById("navigation").classList.toggle("show");
+}
+function closeMenu(){
+ document.getElementById("navigation").classList.remove("show");
+}
+
+// Footer year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Date validation and automatic day calculation
+const pickup = document.getElementById("pickup");
+const returnDate = document.getElementById("return");
+const days = document.getElementById("days");
+
+const today = new Date();
+const localToday = new Date(
+ today.getTime() - today.getTimezoneOffset()*60000
+).toISOString().split("T")[0];
+
+pickup.min = localToday;
+returnDate.min = localToday;
+
+function calculateDays(){
+ if(!pickup.value || !returnDate.value){
+  days.value = "";
+  return;
+ }
+
+ const start = new Date(pickup.value + "T00:00:00");
+ const end = new Date(returnDate.value + "T00:00:00");
+
+ if(end < start){
+  returnDate.setCustomValidity("Return date must not be before pickup date.");
+  days.value = "";
+  return;
+ }
+
+ returnDate.setCustomValidity("");
+ const difference = Math.round((end-start)/86400000);
+ days.value = difference + 1;
+}
+pickup.addEventListener("change",()=>{
+ returnDate.min = pickup.value || localToday;
+ calculateDays();
+});
+returnDate.addEventListener("change",calculateDays);
+
+// Car booking form
+document.getElementById("carForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ if(!this.reportValidity()) return;
+
+ calculateDays();
+ if(!days.value){
+  alert("Please select valid pickup and return dates.");
+  return;
+ }
+
+ const data = new FormData(this);
+ const booking = {
+  name:data.get("name"),
+  email:data.get("email"),
+  phone:data.get("phone"),
+  destination:data.get("destination"),
+  pickup:data.get("pickup"),
+  returnDate:data.get("return"),
+  days:data.get("days"),
+  car:data.get("car"),
+  passengers:data.get("passengers"),
+  time:data.get("time") || "Not specified",
+  message:data.get("message") || "None"
+ };
+
+ const subject = encodeURIComponent("New Car Booking Request");
+ const body = encodeURIComponent(
+  "NEW CAR BOOKING REQUEST\n\n"+
+  "Name: "+booking.name+"\n"+
+  "Email: "+booking.email+"\n"+
+  "Phone: "+booking.phone+"\n"+
+  "Destination: "+booking.destination+"\n"+
+  "Pickup Date: "+booking.pickup+"\n"+
+  "Return Date: "+booking.returnDate+"\n"+
+  "Number of Days: "+booking.days+"\n"+
+  "Car: "+booking.car+"\n"+
+  "Passengers: "+booking.passengers+"\n"+
+  "Pickup Time: "+booking.time+"\n"+
+  "Additional Details: "+booking.message
+ );
+
+ // Replace with your company's real booking email
+ const companyEmail = "info@exploreworld.com";
+
+ alert("Your email application will open with your booking details. Please press Send to submit your request.");
+
+ window.location.href =
+  "mailto:"+companyEmail+
+  "?subject="+subject+"&body="+body;
+});
+</script>
+
+</body>
+</html>
